@@ -1,0 +1,12 @@
+###
+POST http://localhost:3003/createClass
+Content-Type: application/json
+
+{
+    "class_name":"Saitama",
+    "initial_date":"2022/01/01", 
+    "final_date": "2023/02/02",
+    "module": 0
+}
+###
+GET http://localhost:3003/getAllClass

@@ -10,6 +10,7 @@ import { getAllTeachers } from './endpoints/getAllTeachers';
 import { getStudentById } from './endpoints/getStudentById';
 import { getTeacherById } from './endpoints/getTeacherById';
 import { getStudentByClass } from './endpoints/getStudentByClass';
+import { deleteStudent } from './endpoints/deleteStudent';
 
 
 export const app: Express = express();
@@ -36,5 +37,6 @@ app.get('/getAllTeachers', getAllTeachers)
 app.get('/getStudentById/:id', getStudentById)
 app.get('/getTeacherById/:id', getTeacherById)
 app.get('/getStudentByClass/:idClass', getStudentByClass)
+app.delete('/deleteStudent/:idStu', deleteStudent)
 
 

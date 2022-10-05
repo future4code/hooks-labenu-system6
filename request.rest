@@ -8,5 +8,46 @@ Content-Type: application/json
     "final_date": "2023/02/02",
     "module": 0
 }
+
+###
+POST http://localhost:3003/createStudent
+Content-Type: application/json
+
+{
+    "student_name":"Saitama",
+    "student_email":"Saitama@gmail.com",
+    "birth_date":"1985/01/04",
+    "id_class":"class1"
+}
+
+###
+POST http://localhost:3003/createTeacher
+Content-Type: application/json
+
+{
+    "id_class": "class1",
+    "teacher_name": "Rooney",
+    "teacher_email": "rooney@gmail.com",
+    "birth_date": "1995/02/04"
+}
+
 ###
 GET http://localhost:3003/getAllClass
+
+###
+GET http://localhost:3003/getAllStudents
+
+###
+GET http://localhost:3003/getAllTeachers
+
+###
+GET http://localhost:3003/getStudentById/student1
+
+###
+GET http://localhost:3003/getTeacherById/teacher1
+
+###
+GET http://localhost:3003/getStudentByClass/class1
+
+
+

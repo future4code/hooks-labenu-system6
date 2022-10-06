@@ -1,3 +1,4 @@
+-- Active: 1659486260281@@35.226.146.116@3306@hooks-4313208-bryan-oliveira
 CREATE TABLE labeSystem_Class(
 	class_id VARCHAR(255) NOT NULL PRIMARY KEY,
 	class_name VARCHAR(50) NOT NULL,
@@ -65,6 +66,7 @@ INSERT INTO labeSystem_specialities(speciality_id, speciality_name)
           ("speciality5","Typescript");
           
   CREATE TABLE labeSystem_teacherSpeciality(
+	id VARCHAR(255) PRIMARY KEY,
 	teacherSpec_id VARCHAR(255) NOT NULL,
     special_id VARCHAR(255) NOT NULL,
     FOREIGN KEY (teacherSpec_id) REFERENCES labeSystem_teachers(teacher_id),

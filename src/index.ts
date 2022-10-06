@@ -1,6 +1,5 @@
-import express, { Express } from 'express'
-import cors from 'cors'
-import { AddressInfo } from "net";
+import { app } from './app'
+
 import { createClass } from './endpoints/CreateClass';
 import { getAllClass } from './endpoints/getAllClass';
 import { createTeacher } from './endpoints/createTeachers';
@@ -11,22 +10,8 @@ import { getStudentById } from './endpoints/getStudentById';
 import { getTeacherById } from './endpoints/getTeacherById';
 import { getStudentByClass } from './endpoints/getStudentByClass';
 import { deleteStudent } from './endpoints/deleteStudent';
-
-
-export const app: Express = express();
-
-app.use(express.json());
-app.use(cors());
-
-
-const server = app.listen(process.env.PORT || 3003, () => {
-   if (server) {
-      const address = server.address() as AddressInfo;
-      console.log(`Server is running in http://localhost: ${address.port}`);
-   } else {
-      console.error(`Failure upon starting server.`);
-   }
-});
+import { changeStudentsClass } from './endpoints/changeStudentsClass';
+import { changeClassModule } from './endpoints/changeClassModule';
 
 app.post("/createClass", createClass)
 app.post('/createStudent', createStudent)
@@ -38,5 +23,6 @@ app.get('/getStudentById/:id', getStudentById)
 app.get('/getTeacherById/:id', getTeacherById)
 app.get('/getStudentByClass/:idClass', getStudentByClass)
 app.delete('/deleteStudent/:idStu', deleteStudent)
-
+app.put('/changeStudentsClass/:idStu', changeStudentsClass)
+app.put('/changeClassModule/:idClass', changeClassModule)
 

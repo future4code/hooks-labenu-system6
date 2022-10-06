@@ -7,7 +7,7 @@ Content-Type: application/json
     "class_name":"Saitama",
     "initial_date":"2022/01/01", 
     "final_date": "2023/02/02",
-    "module": 0
+    "class_module": 0
 }
 
 //2 - cria um novo estudante
@@ -62,5 +62,23 @@ GET http://localhost:3003/getStudentByClass/class1
 ###
 DELETE http://localhost:3003/deleteStudent/Sara454@hotmail.com
 
+//11 - altera a turma de um estudante
+###
+PUT http://localhost:3003/changeStudentsClass/student2
+Content-Type: application/json
+
+{
+    "id_class": "class1"
+}
+
+
+// 12 - altera o modulo de uma turma
+###
+PUT http://localhost:3003/changeStudentsClass/class1
+Content-Type: application/json
+
+{
+    "module": 1
+}
 
 

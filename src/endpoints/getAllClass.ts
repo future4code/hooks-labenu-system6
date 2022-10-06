@@ -1,15 +1,17 @@
-import { connection } from "../data/connection"
 import { Request, Response } from 'express'
+import { Class } from "../models/Class"
+import { ClassDatabase } from "../data/classDatabase"
 
 export async function getAllClass(req: Request, res: Response) {
 
     try {
 
-        const result = await connection('labeSystem_Class').select()
+        const classDb: ClassDatabase = new ClassDatabase()
+        const result: Class[] = await classDb.getAll()
 
         res.send(result)
 
     } catch (error: any) {
-        throw new Error(error.message)
+       res.status(400).send(error.message)
     }
 }

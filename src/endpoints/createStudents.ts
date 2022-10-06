@@ -1,5 +1,6 @@
 import {Request, Response} from 'express'
-import { connection } from '../data/connection';
+import { StudentDatabase } from '../data/studentDatabase';
+import { Student } from '../models/Student';
 
 export async function createStudent(req: Request, res: Response){
 
@@ -11,19 +12,22 @@ export async function createStudent(req: Request, res: Response){
             throw new Error('Incorrect data!')
         }
 
-        const newStudent = {
-            id_student: Date.now().toString(),
-            student_name,
-            student_email,
-            birth_date,
-            id_class
-        }
+        const newStudent: Student = new Student(
+                Date.now().toString(),
+                student_name,
+                student_email,
+                birth_date,
+                id_class
+        )
 
-        await connection('labeSystem_Students').insert(newStudent)
+        const studentDb: StudentDatabase = new StudentDatabase()
+
+        await studentDb.create(newStudent)
+
         res.status(200).send('Student created successfully!')
 
 
     } catch (error: any) {
-        throw new Error(error.message)
+        res.send(error.message)
     }
 }

@@ -1,28 +1,34 @@
 import {Request, Response} from 'express'
-import {connection} from '../data/connection'
+import { ClassDatabase } from '../data/classDatabase'
+import { Class } from '../models/Class'
 
 export async function createClass(req: Request, res: Response){
 
     try {
 
-        const {class_name, initial_date, final_date, module} = req.body
-         
-        if(!class_name || !initial_date || !final_date|| !module){
+        const {class_name, initial_date, final_date, class_module} = req.body
+        
+        console.log(class_name, initial_date, final_date, class_module)
+
+        if(!class_name || !initial_date || !final_date|| isNaN(class_module)){
             throw new Error("Incorrect data, try again")
         }
 
-        const newClass = {
-            class_id:Date.now().toString(),
+        const newClass: Class = new Class(
+            Date.now().toString(),
             class_name, 
             initial_date, 
             final_date,
-            module
-        }
+            class_module
+        )
 
-        await connection('labeSystem_Class').insert(newClass)
+        const classDb: ClassDatabase = new ClassDatabase()
+
+        await classDb.create(newClass)
+
         res.status(200).send('class created successfully!')
 
     } catch (error:any) {
-        throw new Error(error.message)
+        res.status(400).send(error.message)
     }
 }

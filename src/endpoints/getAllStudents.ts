@@ -1,15 +1,18 @@
-import { connection } from "../data/connection"
 import { Request, Response } from 'express'
+import { Student } from "../models/Student"
+import { StudentDatabase } from "../data/studentDatabase"
 
 export async function getAllStudents(req: Request, res: Response) {
 
     try {
 
-        const result = await connection('labeSystem_Students').select()
+        const studentDb: StudentDatabase = new StudentDatabase()
+
+        const result: Student[] = await studentDb.getAll() 
 
         res.send(result)
 
     } catch (error: any) {
-        throw new Error(error.message)
+        res.send(error.message)
     }
 }

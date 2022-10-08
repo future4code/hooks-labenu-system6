@@ -15,6 +15,7 @@ export async function getStudentByClass(req: Request, res: Response) {
        res.status(200).send(result)
 
     } catch (error: any) {
-        throw new Error(error.message)
+        res.status(400).send({message: error.message})
+
     }
 }

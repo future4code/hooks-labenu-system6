@@ -74,7 +74,7 @@ Content-Type: application/json
 
 // 12 - altera o modulo de uma turma
 ###
-PUT http://localhost:3003/changeStudentsClass/class1
+PUT http://localhost:3003/changeClassModule/class1
 Content-Type: application/json
 
 {

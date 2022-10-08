@@ -1,15 +1,17 @@
-import { connection } from "../data/connection"
 import { Request, Response } from 'express'
+import { Teacher } from "../models/teacher"
+import { TeacherDatabase } from "../data/theacherDatabase"
 
 export async function getAllTeachers(req: Request, res: Response) {
 
     try {
 
-        const result = await connection('labeSystem_teachers').select()
+        const teacherDb: TeacherDatabase = new TeacherDatabase()
+        const result: Teacher[] = await teacherDb.getAll()
 
         res.send(result)
 
     } catch (error: any) {
-        throw new Error(error.message)
+        res.status(400).send({message: error.message})
     }
 }

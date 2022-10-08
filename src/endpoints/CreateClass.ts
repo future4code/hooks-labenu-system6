@@ -29,6 +29,7 @@ export async function createClass(req: Request, res: Response){
         res.status(200).send('class created successfully!')
 
     } catch (error:any) {
-        res.status(400).send(error.message)
+        res.status(400).send({message: error.message})
+
     }
 }

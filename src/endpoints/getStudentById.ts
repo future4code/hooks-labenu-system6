@@ -17,6 +17,7 @@ export async function getStudentById(req: Request, res: Response) {
 
     } catch (error: any) {
 
-        throw new Error(error.message)
+        res.status(400).send({message: error.message})
+
     }
 }

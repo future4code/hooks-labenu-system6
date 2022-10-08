@@ -22,6 +22,7 @@ export async function changeClassModule(req: Request, res: Response){
         res.status(200).send({message: "class's module successfully changed"})
         
     } catch (error: any) {
-        res.status(400).send(error.message)
+        res.status(400).send({message: error.message})
+
     }
 }

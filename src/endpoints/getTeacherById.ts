@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { connection } from '../data/connection'
+import { TeacherDatabase } from '../data/theacherDatabase';
 
 export async function getTeacherById(req: Request, res: Response) {
 
@@ -10,13 +10,12 @@ export async function getTeacherById(req: Request, res: Response) {
         if (!id) {
             throw new Error('Teacher not found')
         }
-
-        const result = await connection('labeSystem_teachers')
-            .select('teacher_id', 'teacher_name')
-            .where({ teacher_id: id })
+        
+        const teacherDb: TeacherDatabase = new TeacherDatabase()
+        const result = await teacherDb.getById(id)
+        
         res.status(200).send(result)
-
     } catch (error: any) {
-        throw new Error(error.message)
+       res.status(400).send({message: error.message})
     }
 }

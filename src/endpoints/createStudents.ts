@@ -28,6 +28,7 @@ export async function createStudent(req: Request, res: Response){
 
 
     } catch (error: any) {
-        res.send(error.message)
+        res.status(400).send({message: error.message})
+
     }
 }

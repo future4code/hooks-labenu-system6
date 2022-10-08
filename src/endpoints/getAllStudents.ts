@@ -13,6 +13,7 @@ export async function getAllStudents(req: Request, res: Response) {
         res.send(result)
 
     } catch (error: any) {
-        res.send(error.message)
+        res.status(400).send({message: error.message})
+
     }
 }

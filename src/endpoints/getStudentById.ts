@@ -1,19 +1,16 @@
 import { Request, Response } from 'express';
-import { connection } from '../data/connection'
+import { StudentDatabase } from '../data/studentDatabase';
 
 export async function getStudentById(req: Request, res: Response) {
     try {
 
-        const { id } = req.params
+        const  id  = req.params.idStu
 
         if (!id) {
             throw new Error('Student not found')
         }
-
-        const result = await connection('labeSystem_Students')
-            .select("student_id", "student_name")
-            .where({ student_id: id })
-        res.status(200).send(result)
+        const studentDb: StudentDatabase = new StudentDatabase() 
+        const result = await studentDb.findById(id)
 
     } catch (error: any) {
 

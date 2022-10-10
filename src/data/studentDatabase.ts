@@ -21,4 +21,11 @@ export class StudentDatabase extends BaseDatabase {
     public async findById(student_id: string) {
         return  await BaseDatabase.connection(this.TABLE_NAME).select().where({ student_id })
     }
+
+    public async delete(id: string): Promise<void>{
+        await StudentDatabase.connection.raw(`
+        DELETE FROM ${this.TABLE_NAME}
+        WHERE student_id = "${id}"
+    `)
+    }
 }

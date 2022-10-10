@@ -1,16 +1,15 @@
 import { Request, Response } from 'express';
-import { connection } from '../data/connection'
+import { StudentDatabase } from '../data/studentDatabase';
 
 export async function deleteStudent(req: Request, res: Response) {
 
     try {
 
-        const {id} = req.params;
+        const id = req.params.idStu
 
-        await connection.raw(`
-            DELETE FROM labeSystem_Students
-            WHERE student_id = "${id}"
-        `)
+        const studentDb: StudentDatabase = new StudentDatabase()
+
+        await studentDb.delete(id)
        
         res.status(200).send('Student deleted successfully!')
 

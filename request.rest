@@ -1,0 +1,84 @@
+//1 - Cria uma nova turma
+###
+POST http://localhost:3003/createClass
+Content-Type: application/json
+
+{
+    "class_name":"Saitama",
+    "initial_date":"2022/01/01", 
+    "final_date": "2023/02/02",
+    "class_module": 0
+}
+
+//2 - cria um novo estudante
+###
+POST http://localhost:3003/createStudent
+Content-Type: application/json
+
+{
+    "student_name":"Saitama",
+    "student_email":"Saitama@gmail.com",
+    "birth_date":"1985/01/04",
+    "id_class":"class1"
+}
+
+//3 - Cria um novo docente
+###
+POST http://localhost:3003/createTeacher
+Content-Type: application/json
+
+{
+    "id_class": "class1",
+    "teacher_name": "Rooney",
+    "teacher_email": "rooney@gmail.com",
+    "birth_date": "1995/02/04"
+}
+
+//4 - Pega todas as turmas
+###
+GET http://localhost:3003/getAllClass
+
+//5 - Pega todos os estudantes
+###
+GET http://localhost:3003/getAllStudents
+
+//6 - Pega todos os docentes
+###
+GET http://localhost:3003/getAllTeachers
+
+//7 - Pega estudante pelo id
+###
+GET http://localhost:3003/getStudentById/student3
+
+//8 - Pega docente pelo id
+###
+GET http://localhost:3003/getTeacherById/teacher1
+
+//9 - Pega estudante pela classe
+###
+GET http://localhost:3003/getStudentByClass/class1
+
+//10 - deleta um estudante pelo id
+###
+DELETE http://localhost:3003/deleteStudent/Sara454@hotmail.com
+
+//11 - altera a turma de um estudante
+###
+PUT http://localhost:3003/changeStudentsClass/student2
+Content-Type: application/json
+
+{
+    "id_class": "class1"
+}
+
+
+// 12 - altera o modulo de uma turma
+###
+PUT http://localhost:3003/changeClassModule/class1
+Content-Type: application/json
+
+{
+    "module": 1
+}
+
+
